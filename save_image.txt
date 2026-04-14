@@ -1,0 +1,3 @@
+@echo off
+rem Placeholder for saving the image. I will actually use the file tool to save the image metadata in the next step.
+echo Saving stamp image...
