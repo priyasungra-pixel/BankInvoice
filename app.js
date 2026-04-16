@@ -171,6 +171,14 @@ function generatePDF(invoice) {
                 <td style="padding: 6px 8px; text-align: left;">Total</td>
                 <td style="padding: 6px 8px; text-align: right; color: #000; font-weight: bold;">₹${formatCurrency(total)}</td>
             </tr>
+            <tr style="color: #ae2012; font-weight: bold;">
+                <td style="padding: 3px 8px; text-align: left;">Credits Applied</td>
+                <td style="padding: 3px 8px; text-align: right;">₹${formatCurrency(total - parseFloat(invoice.Balance || 0))}</td>
+            </tr>
+            <tr style="font-weight: bold; background: #fff; border-top: 1px solid #000;">
+                <td style="padding: 3px 8px; text-align: left;">Balance Due</td>
+                <td style="padding: 3px 8px; text-align: right;">₹${formatCurrency(parseFloat(invoice.Balance || 0))}</td>
+            </tr>
         </table>
     `;
 
@@ -190,7 +198,11 @@ function generatePDF(invoice) {
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
 
+    const originalScrollY = window.scrollY;
+    window.scrollTo(0, 0); // Fix html2canvas shifting bug
+
     html2pdf().set(opt).from(element).save().then(() => {
         element.style.display = 'none';
+        window.scrollTo(0, originalScrollY);
     });
 }
