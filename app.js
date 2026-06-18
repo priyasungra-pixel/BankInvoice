@@ -192,7 +192,7 @@ function generatePDF(invoice) {
 
     const opt = {
         margin: 0,
-        filename: `${invoice['Customer Name']}_${invoice['Invoice#'].replace(/\\//g, '_')}.pdf`,
+        filename: `${invoice['Customer Name']}_${String(invoice['Invoice#']).replaceAll('/', '_')}.pdf`,
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { scale: 2, useCORS: true },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }

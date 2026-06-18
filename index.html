@@ -991,7 +991,7 @@
 
                     const opt = {
                         margin: 0,
-                        filename: `${inv['Customer Name']}_${inv['Invoice#'].replace(/\\//g, '_')}.pdf`,
+                        filename: `${inv['Customer Name']}_${String(inv['Invoice#']).replaceAll('/', '_')}.pdf`,
                         image: { type: 'jpeg', quality: 0.95 },
                         html2canvas: {
                             scale: 3,
