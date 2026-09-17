@@ -693,7 +693,7 @@
 
             // To fix "Pending" IDs (mixed type bug), we split the fetch into two ranges.
             // Range 1 ensures numeric IDs are captured. Range 2 forces script to see text IDs.
-            const ranges = ['A1:I127', 'A128:I1000'];
+            const ranges = ['A1:I127', 'A128:I5000'];
             ranges.forEach(range => {
                 const script = document.createElement('script');
                 script.src = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&gid=0&range=${range}`;
